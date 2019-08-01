@@ -11,7 +11,7 @@ import socket
 import os
 
 #Email variables
-email = ''
+email = ''#PUT YOUR EMAIL DEFAULTS HERE
 password = ''
 send_to_email = ''
 subject = 'ALERT'
@@ -142,17 +142,17 @@ class GUI(threading.Thread):
 
         logintxt = StringVar()
         login = Entry(self.root, textvariable=logintxt, bg='light gray')
-        logintxt.set("forPythonEmail@gmail.com")
+        logintxt.set("")#PUT YOUR DEFAULT EMAIL HERE
         login.grid(row=4, column=0)
 
         passtxt = StringVar()
         password = Entry(self.root, textvariable=passtxt, bg='light gray', show='*')
-        passtxt.set("helloWorld123")
+        passtxt.set("")#PUT DEFAULT EMAIL'S PASSWORD HERE
         password.grid(row=4, column=1)
 
         sendtotxt = StringVar()
         sendto = Entry(self.root, textvariable=sendtotxt, bg='light gray')
-        sendtotxt.set("toReceiveMessages@gmail.com")
+        sendtotxt.set("")#PUT DEFAULT RECEIVING EMAIL HERE
         sendto.grid(row=5, column=0)
 
         setCredentials = Label(self.root, text="Set Credentials")
