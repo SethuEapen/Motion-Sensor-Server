@@ -1,4 +1,5 @@
-#Alexander Baran-Harper: https://www.youtube.com/watch?v=IZX7G77daG0
+#Sockets code by Alexander Baran-Harper: https://www.youtube.com/watch?v=IZX7G77daG0
+#Hotkey, Keyboard Simulation, and email by PyTutorials: https://www.youtube.com/watch?v=n_dfv5DLCGI, https://www.youtube.com/watch?v=DTnz8wA6wpw, https://www.youtube.com/watch?v=YPiHBtddefI
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from pynput import keyboard
@@ -38,6 +39,7 @@ COMBINATIONS = [
     {keyboard.Key.ctrl_l, keyboard.Key.alt_l,keyboard.KeyCode(char='W')}
 ]
 current = set()
+k = keyboard.Controller()
 
 #GUI thread
 class GUI(threading.Thread):
@@ -229,6 +231,14 @@ def closeFile():
     except Exception:
         print(Exception)
 
+def pressCommand():#this command closes one tab using CTRL + W you can use this if you prefer it
+    k.press(keyboard.Key.ctrl_l)
+    #k.press(keyboard.Key.shift_l) #uncomment this if you want to close the whole window on motion
+    k.press('w')
+    k.release(keyboard.Key.ctrl_l)
+    #k.release(keyboard.Key.shift_l)
+    k.release('w')
+        
 def sendEmail():
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
@@ -257,6 +267,7 @@ def dataTransfer(conn):
                 gui.see()
             if closeVar:
                 closeFile()
+                #pressCommand() #you can use this if you want to close one tab when motion is detected.
             if sendMail:
                 sendEmail()
             reply = 'WORKED'
